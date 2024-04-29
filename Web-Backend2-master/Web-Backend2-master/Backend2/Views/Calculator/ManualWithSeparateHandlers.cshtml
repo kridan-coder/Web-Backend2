@@ -1,0 +1,74 @@
+﻿@model Backend2.Models.CalculatorModel
+
+@{
+    ViewBag.Title = "Hello Forms";
+}
+
+<h2>Calculator</h2>
+
+<form asp-action="ManualWithSeparateHandlers">
+    <div class="my-own-form">
+        @if (ViewBag.ErrorForm1 != null)
+        {
+            <input type="number" name="Form1" class="form-control input-validation-error" value="@ViewBag.NumberForm1" />
+            <span class="field-validation-error">@ViewBag.ErrorForm1</span>
+        }
+        else
+        {
+            <input type="number" name="Form1" class="form-control" value="@ViewBag.NumberForm1" />
+        }
+    </div>
+
+
+<select name="OperatorSelector" class="form-control" style="width: 60px;">
+        @if (ViewBag.SelectorForm == "+")
+        {
+            <option value="+" selected>+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        }
+        else if (ViewBag.SelectorForm == "-")
+        {
+            <option value="+">+</option>
+            <option value="-" selected>-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        }
+        else if (ViewBag.SelectorForm == "*")
+        {
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*" selected>*</option>
+            <option value="/">/</option>
+        }
+        else
+        {
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/" selected>/</option>
+        }
+</select>
+
+
+
+    <div class="my-own-form">
+        @if (ViewBag.ErrorForm2 != null)
+        {
+            <input type="number" name="Form2" class="form-control input-validation-error" value="@ViewBag.NumberForm2" />
+            <span class="field-validation-error">@ViewBag.ErrorForm2</span>
+        }
+        else
+        {
+            <input type="number" name="Form2" class="form-control" value="@ViewBag.NumberForm2" />
+        }
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+
+    @if (Model != null)
+    {
+        <div class="my-own-form"> = @Model.Result</div>
+    }
+
+</form>
